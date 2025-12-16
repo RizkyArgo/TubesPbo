@@ -1,16 +1,24 @@
 package fotokopiku;
 
-public class Operator extends User implements Cetak{
-    public Operator(int id,String nama,String role){
-        super(id, nama, role);
+public class Operator extends User {
+
+    private Layanan layanan;
+
+    public Operator(int idUser, String username, String password, String role) {
+        super(idUser, username, password, role);
     }
 
-    public static void inputTransaksi(){
-
+    public void inputTransaksi() {
+        System.out.println("Input transaksi oleh operator");
     }
 
     @Override
-    public static void cetakTransaksi(){
-        System.out.println();
+    public boolean login() {
+        return true;
+    }
+
+    @Override
+    public void cetakTransaksi() {
+        System.out.println("Cetak transaksi oleh operator");
     }
 }

@@ -1,35 +1,35 @@
 package fotokopiku;
 
 public class Layanan {
+
     private int idLayanan;
     private String namaLayanan;
-    private int hargaperHalaman;
+    private int hargaPerHalaman;
 
-    public Layanan(int idLayanan,String namaLayanan,int hargaperHalaman){
+    public Layanan(int idLayanan, String namaLayanan, int hargaPerHalaman) {
         this.idLayanan = idLayanan;
-        this.namaLayanan=namaLayanan;
-        this.hargaperHalaman=hargaperHalaman;
+        this.namaLayanan = namaLayanan;
+        this.hargaPerHalaman = hargaPerHalaman;
     }
 
-    public static void getHarga(){
-
+    public int cekHarga(int jumlah) {
+        return jumlah * hargaPerHalaman;
     }
 
-    public int getIdLayanan() {
+    public int getId() {
         return idLayanan;
     }
 
-    public String getNamaLayanan() {
+    public String getNama() {
         return namaLayanan;
     }
 
-    public int getHargaperHalaman() {
-        return hargaperHalaman;
+    public int getHargaPerHalaman() {
+        return hargaPerHalaman;
     }
 
-    public void info(){
-        System.out.println("=== INFO ===");
-        System.out.println("Nama Layanan: " + namaLayanan);
-        System.out.println("Harga per halaman: " + hargaperHalaman);
+    public void info() {
+        System.out.println("Nama Layanan : " + namaLayanan);
+        System.out.println("Harga/Halaman: " + hargaPerHalaman);
     }
 }

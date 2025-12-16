@@ -1,23 +1,29 @@
 package fotokopiku;
 
 public class Admin extends User {
-    public Admin(int id,String nama,String roles){
-        super(id, nama, nama);
+
+    public Admin(int idUser, String username, String password) {
+        super(idUser, username, password, "Admin");
     }
 
-    public static void kelolaOperator(String a){
-    
+    public void kelolaOperator() {
+        System.out.println("Admin mengelola data operator");
     }
 
-    public static void kelolaLayanan(){
-
+    public void kelolaLayanan() {
+        System.out.println("Admin mengelola data layanan");
     }
 
-    public static void lihatTotalPendapatan(){
-
+    public void lihatTotalPendapatan() {
+        System.out.println("Menampilkan total pendapatan");
     }
 
-    public static void lihatRiwayatTransaksi(){
+    public void lihatRiwayatTransaksi() {
+        System.out.println("Menampilkan riwayat transaksi");
+    }
 
+    @Override
+    public boolean login() {
+        return true;
     }
 }

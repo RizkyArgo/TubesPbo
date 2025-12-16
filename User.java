@@ -1,55 +1,43 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package fotokopiku;
 
-/**
- *
- * @author VICTUS
- */
-abstract class User implements Cetak {
-    private int idUser;
-    private String nama;
-    private String password;
-    private String roles;
+public abstract class User implements Cetak {
 
-    public User(int idUser,String nama,String password,String roles){
+    protected int idUser;
+    protected String username;
+    protected String password;
+    protected String role;
+
+    public User(int idUser, String username, String password, String role) {
         this.idUser = idUser;
-        this.nama = nama;
+        this.username = username;
         this.password = password;
-        this.roles = roles;
+        this.role = role;
     }
-    
-    public int getIdUser() {
+
+    public boolean login() {
+        return true;
+    }
+
+    public int getId() {
         return idUser;
     }
 
     public String getNama() {
-        return nama;
+        return username;
     }
 
-    public String getPassword() {
-        return password;
-    }
-    
-    public String getRoles() {
-        return roles;
+    public String getRole() {
+        return role;
     }
 
-    public void info(){
-        System.out.println("=== INFO ===");
-        System.out.println("Id user: " + idUser);
-        System.out.println("Nama user: " + nama);
-        System.out.println("Role: " + roles);
+    public void info() {
+        System.out.println("ID User : " + idUser);
+        System.out.println("Username: " + username);
+        System.out.println("Role    : " + role);
     }
 
-    public static boolean login(){
-     return false;
-    }
-    
     @Override
-    public void cetakTransaksi(){
-        System.out.println("=== STRUK ===");
+    public void cetakTransaksi() {
+        System.out.println("=== CETAK TRANSAKSI ===");
     }
 }
