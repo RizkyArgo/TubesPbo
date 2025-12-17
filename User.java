@@ -7,6 +7,22 @@ public abstract class User implements Cetak {
     protected String password;
     protected String role;
 
+    public void setIdUser(int idUser) {
+        this.idUser = idUser;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
     public User(int idUser, String username, String password, String role) {
         this.idUser = idUser;
         this.username = username;

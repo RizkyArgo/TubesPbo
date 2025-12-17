@@ -1,9 +1,13 @@
 package fotokopiku;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
+        ArrayList<Admin> adminList = new ArrayList<>();
+        ArrayList<Operator> operatorList = new ArrayList<>();
+        ArrayList<Layanan> layananList = new ArrayList<>();
 
         Scanner input = new Scanner(System.in);
 
@@ -15,7 +19,17 @@ public class Main {
         input.nextLine();
 
         if (pilih == 1) {
-            Admin admin = new Admin(1, "admin", "admin123");
+            Admin admin = new Admin(0, null, null);
+            System.out.print("Masukkan Id: ");
+            admin.setIdUser(input.nextInt());
+            System.out.print("Masukkan Username: ");
+            admin.setUsername(input.next());
+            System.out.print("Masukkan Password: ");
+            admin.setPassword(input.next());
+            admin.setRole("ADMIN");
+
+            adminList.add(admin);
+            
             System.out.println("\nLogin sebagai ADMIN");
             admin.info();
 
@@ -54,9 +68,18 @@ public class Main {
             }
 
         } else if (pilih == 2) {
-            Operator operator = new Operator(2, "operator", "op123");
+            Operator operator = new Operator(0, null, null, null);
+            System.out.print("Masukkan Id: ");
+            operator.setIdUser(input.nextInt());
+            System.out.print("Masukkan Username: ");
+            operator.setUsername(input.next());
+            System.out.print("Masukkan Password: ");
+            operator.setPassword(input.next());
+            operator.setRole("ADMIN");
             System.out.println("\nLogin sebagai OPERATOR");
             operator.info();
+
+            operatorList.add(operator);
 
             boolean jalan = true;
             while (jalan) {
@@ -72,7 +95,7 @@ public class Main {
                     case 1:
                         operator.inputTransaksi();
 
-                        Layanan layanan = new Layanan(1, "Print Hitam Putih", 500);
+                        Layanan layanan = new Layanan(0, null, 0);
                         Transaksi transaksi = new Transaksi(
                                 1,
                                 operator,
