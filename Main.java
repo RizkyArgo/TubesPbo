@@ -1,13 +1,9 @@
 package fotokopiku;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        ArrayList<Admin> adminList = new ArrayList<>();
-        ArrayList<Operator> operatorList = new ArrayList<>();
-        ArrayList<Layanan> layananList = new ArrayList<>();
 
         Scanner input = new Scanner(System.in);
 
@@ -19,18 +15,20 @@ public class Main {
         input.nextLine();
 
         if (pilih == 1) {
-            Admin admin = new Admin(0, null, null);
-            System.out.print("Masukkan Id: ");
-            admin.setIdUser(input.nextInt());
-            System.out.print("Masukkan Username: ");
-            admin.setUsername(input.next());
-            System.out.print("Masukkan Password: ");
-            admin.setPassword(input.next());
-            admin.setRole("ADMIN");
 
-            adminList.add(admin);
-            
-            System.out.println("\nLogin sebagai ADMIN");
+            System.out.println("\n=== LOGIN ADMIN ===");
+            System.out.print("Username: ");
+            String username = input.nextLine();
+            System.out.print("Password: ");
+            String password = input.nextLine();
+
+            Admin admin = new Admin(0, username, password);
+
+            if (!admin.login()) {
+                System.out.println("Login gagal!");
+                return;
+            }
+
             admin.info();
 
             boolean jalan = true;
@@ -68,18 +66,22 @@ public class Main {
             }
 
         } else if (pilih == 2) {
-            Operator operator = new Operator(0, null, null, null);
-            System.out.print("Masukkan Id: ");
-            operator.setIdUser(input.nextInt());
-            System.out.print("Masukkan Username: ");
-            operator.setUsername(input.next());
-            System.out.print("Masukkan Password: ");
-            operator.setPassword(input.next());
-            operator.setRole("ADMIN");
-            System.out.println("\nLogin sebagai OPERATOR");
-            operator.info();
 
-            operatorList.add(operator);
+            System.out.println("\n=== LOGIN OPERATOR ===");
+            System.out.print("Username: ");
+            String username = input.nextLine();
+            System.out.print("Password: ");
+            String password = input.nextLine();
+
+            Operator operator = new Operator(0, username, password);
+
+            // 🔥 LOGIN DATABASE
+            if (!operator.login()) {
+                System.out.println("Login gagal!");
+                return;
+            }
+
+            operator.info();
 
             boolean jalan = true;
             while (jalan) {
@@ -94,27 +96,14 @@ public class Main {
                 switch (menu) {
                     case 1:
                         operator.inputTransaksi();
-
-                        Layanan layanan = new Layanan(0, null, 0);
-                        Transaksi transaksi = new Transaksi(
-                                1,
-                                operator,
-                                layanan,
-                                10
-                        );
-
-                        transaksi.info();
                         break;
-
                     case 2:
                         operator.cetakTransaksi();
                         break;
-
                     case 0:
                         jalan = false;
                         System.out.println("Logout Operator...");
                         break;
-
                     default:
                         System.out.println("Menu tidak tersedia");
                 }

@@ -1,27 +1,9 @@
 package fotokopiku;
-
 public abstract class User implements Cetak {
-
     protected int idUser;
     protected String username;
     protected String password;
     protected String role;
-
-    public void setIdUser(int idUser) {
-        this.idUser = idUser;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public void setRole(String role) {
-        this.role = role;
-    }
 
     public User(int idUser, String username, String password, String role) {
         this.idUser = idUser;
@@ -30,9 +12,7 @@ public abstract class User implements Cetak {
         this.role = role;
     }
 
-    public boolean login() {
-        return true;
-    }
+    public abstract boolean login();
 
     public int getId() {
         return idUser;
@@ -47,8 +27,7 @@ public abstract class User implements Cetak {
     }
 
     public void info() {
-        System.out.println("ID User : " + idUser);
-        System.out.println("Username: " + username);
+        System.out.println("\nUsername: " + username);
         System.out.println("Role    : " + role);
     }
 

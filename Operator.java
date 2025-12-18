@@ -4,12 +4,13 @@ public class Operator extends User {
 
     private Layanan layanan;
 
-    public Operator(int idUser, String username, String password, String role) {
-        super(idUser, username, password, role);
+    public Operator(int idUser, String username, String password) {
+        super(idUser, username, password, "Admin");
     }
 
     public void inputTransaksi() {
         System.out.println("Input transaksi oleh operator");
+        System.out.println("");
     }
 
     @Override
