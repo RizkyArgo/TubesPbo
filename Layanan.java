@@ -1,21 +1,29 @@
 package fotokopiku;
 
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.math.BigDecimal;
+
 public class Layanan {
 
+    // ===== ATTRIBUTE (CLASS DIAGRAM) =====
     private int idLayanan;
     private String namaLayanan;
-    private int hargaPerHalaman;
+    private BigDecimal hargaPerHalaman;
     private String tipe;
 
-    public Layanan(int idLayanan, String namaLayanan, int hargaPerHalaman,String tipe) {
+    // ===== CONSTRUCTOR =====
+    public Layanan(int idLayanan, String namaLayanan, BigDecimal hargaPerHalaman, String tipe) {
         this.idLayanan = idLayanan;
         this.namaLayanan = namaLayanan;
         this.hargaPerHalaman = hargaPerHalaman;
         this.tipe = tipe;
     }
 
-    public int cekHarga(int jumlah) {
-        return jumlah * hargaPerHalaman;
+    // ===== LOGIC OOP (CLASS DIAGRAM) =====
+    public BigDecimal cekHarga(int jumlah) {
+        return hargaPerHalaman.multiply(BigDecimal.valueOf(jumlah));
     }
 
     public int getId() {
@@ -26,7 +34,7 @@ public class Layanan {
         return namaLayanan;
     }
 
-    public int getHargaPerHalaman() {
+    public BigDecimal getHargaPerHalaman() {
         return hargaPerHalaman;
     }
 
@@ -37,11 +45,36 @@ public class Layanan {
     public void info() {
         System.out.println("Nama Layanan : " + namaLayanan);
         System.out.println("Harga/Halaman: " + hargaPerHalaman);
+        System.out.println("Tipe         : " + tipe);
+    }
+
+    // ===== DATABASE (ERD) =====
+    public static void infoDB() {
+        try {
+            Connection conn = Database.getConnection();
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT * FROM layanan");
+
+            System.out.println("=== DATA LAYANAN ===");
+            while (rs.next()) {
+                System.out.println(
+                    "ID      : " + rs.getInt("id_layanan") +
+                    "\nNama    : " + rs.getString("nama_layanan") +
+                    "\nHarga   : " + rs.getBigDecimal("harga_per_lembar") +
+                    "\nTipe    : " + rs.getString("tipe_layanan") +
+                    "\n----------------------"
+                );
+            }
+
+        } catch (Exception e) {
+            System.out.println("Gagal mengambil data layanan");
+            e.printStackTrace();
+        }
     }
 
     @Override
     public String toString() {
-        return "ID: " + idLayanan + 
+        return "ID: " + idLayanan +
                " | Nama: " + namaLayanan +
                " | Harga: " + hargaPerHalaman;
     }
