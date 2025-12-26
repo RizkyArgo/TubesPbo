@@ -1,9 +1,9 @@
 package fotokopiku;
 
+import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
-import java.math.BigDecimal;
 
 public class Transaksi {
 
@@ -21,24 +21,12 @@ public class Transaksi {
         this.jumlahLembar = jumlahLembar;
     }
 
-<<<<<<< HEAD
-    public int totalHarga(int jumlah) {//ni ntar jumlah * harga per halaman
-=======
+    // public int totalHarga(int jumlah) {
     // ===== LOGIC OOP (CLASS DIAGRAM) =====
     public BigDecimal totalHarga(int jumlah) {
->>>>>>> 026dff554e987783be394085e587bf042b37c923
         return layanan.cekHarga(jumlah);
     }
-
-    public void info() {
-        System.out.println("=== TRANSAKSI (OBJECT) ===");
-        System.out.println("ID Transaksi : " + idTransaksi);
-        System.out.println("Operator     : " + operator.getNama());
-        System.out.println("Layanan      : " + layanan.getNama());
-        System.out.println("Jumlah       : " + jumlahLembar);
-        System.out.println("Total Harga  : " + totalHarga(jumlahLembar));
-    }
-
+    
     // ===== DATABASE (ERD) =====
     public static void infoDB() {
         try {

@@ -35,7 +35,7 @@ public class Main {
             while (jalan) {
                 System.out.println("\n--- MENU ADMIN ---");
                 System.out.println("1. Kelola Operator");
-                System.out.println("2. Lihat Data Layanan");
+                System.out.println("2. Kelola Layanan");
                 System.out.println("3. Lihat Total Pendapatan");
                 System.out.println("4. Lihat Riwayat Transaksi");
                 System.out.println("0. Logout");
@@ -48,13 +48,13 @@ public class Main {
                         admin.kelolaOperator();
                         break;
                     case 2:
-                        Layanan.infoDB();
+                        admin.kelolaLayanan();
                         break;
                     case 3:
                         admin.lihatTotalPendapatan();
                         break;
                     case 4:
-                        Transaksi.infoDB();
+                        admin.cetakTransaksi();
                         break;
                     case 0:
                         jalan = false;
