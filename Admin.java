@@ -70,9 +70,9 @@ public class Admin extends User {
                         Connection conn = Koneksi.getConnection();                           
                         String sql = "INSERT INTO layanan (nama_layanan, harga_per_lembar, tipe_layanan) VALUES (?,?,?)";
                         PreparedStatement ps = conn.prepareStatement(sql);
-                        ps.setString(2, nama);
-                        ps.setInt(3, harga);
-                        ps.setString(4, tipe);
+                        ps.setString(1, nama);
+                        ps.setInt(2, harga);
+                        ps.setString(3, tipe);
                         ps.executeUpdate();
                         System.out.println("Layanan berhasil ditambahkan ke database!");
                     } catch (Exception e) {
@@ -156,16 +156,16 @@ public class Admin extends User {
                     break;
 
                 case 2:
-                    System.out.print("Masukkan Nama Layanan Yang Ingin Dihapus: ");
+                    System.out.print("Masukkan Nama Operator Yang Ingin Dihapus: ");
                     String hapus = s.next();
 
                     try {
                     Connection conn = Koneksi.getConnection();
-                    String sql = "DELETE FROM layanan WHERE nama_layanan =?";  
+                    String sql = "DELETE FROM user WHERE username =?";  
                     PreparedStatement ps = conn.prepareStatement(sql);
                     ps.setString(1, hapus); 
                     ps.executeUpdate();
-                    System.out.println("Layanan Berhasil Dihapus");
+                    System.out.println("Operator Berhasil Dihapus");
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
@@ -217,5 +217,17 @@ public class Admin extends User {
 
     public void lihatRiwayatTransaksi() {
         System.out.println("Menampilkan riwayat transaksi");
+        try {
+            Connection conn = Koneksi.getConnection();
+            String sql = "SELECT tgl_transaksi,nama_pelanggan,tipe_layanan,total_harga FROM transaksi";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+               
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

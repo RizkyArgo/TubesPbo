@@ -5,7 +5,7 @@ public class Operator extends User {
     private Layanan layanan;
 
     public Operator(int idUser, String username, String password) {
-        super(idUser, username, password, "Admin");
+        super(idUser, username, password, "Operator");
     }
 
     public void inputTransaksi() {

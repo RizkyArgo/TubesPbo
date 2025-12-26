@@ -14,7 +14,7 @@ public class Transaksi {
         this.jumlahLembar = jumlahLembar;
     }
 
-    public int totalHarga(int jumlah) {
+    public int totalHarga(int jumlah) {//ni ntar jumlah * harga per halaman
         return layanan.cekHarga(jumlah);
     }
 

@@ -75,7 +75,6 @@ public class Main {
 
             Operator operator = new Operator(0, username, password);
 
-            // 🔥 LOGIN DATABASE
             if (!operator.login()) {
                 System.out.println("Login gagal!");
                 return;
