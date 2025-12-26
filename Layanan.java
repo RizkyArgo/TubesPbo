@@ -21,7 +21,7 @@ public class Layanan {
         this.tipe = tipe;
     }
 
-    // ===== LOGIC OOP (CLASS DIAGRAM) =====
+    // ===== LOGIC OOP =====
     public BigDecimal cekHarga(int jumlah) {
         return hargaPerHalaman.multiply(BigDecimal.valueOf(jumlah));
     }
@@ -48,10 +48,10 @@ public class Layanan {
         System.out.println("Tipe         : " + tipe);
     }
 
-    // ===== DATABASE (ERD) =====
+    // ===== DATABASE =====
     public static void infoDB() {
         try {
-            Connection conn = Database.getConnection();
+            Connection conn = Koneksi.getConnection();
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery("SELECT * FROM layanan");
 

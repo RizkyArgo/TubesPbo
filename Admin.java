@@ -69,7 +69,7 @@ public class Admin extends User {
                     String tipe = s.next();
 
                     try {
-                        Connection conn = Koneksi.getConnection();                           
+                        Connection conn = Koneksi.getConnection();
                         String sql = "INSERT INTO layanan (nama_layanan, harga_per_lembar, tipe_layanan) VALUES (?,?,?)";
                         PreparedStatement ps = conn.prepareStatement(sql);
                         ps.setString(1, nama);
@@ -87,34 +87,35 @@ public class Admin extends User {
                     String hapus = s.next();
 
                     try {
-                    Connection conn = Koneksi.getConnection();
-                    String sql = "DELETE FROM layanan WHERE nama_layanan =?";  
-                    PreparedStatement ps = conn.prepareStatement(sql);
-                    ps.setString(1, hapus); 
-                    ps.executeUpdate();
-                    System.out.println("Layanan Berhasil Dihapus");
+                        Connection conn = Koneksi.getConnection();
+                        String sql = "DELETE FROM layanan WHERE nama_layanan =?";
+                        PreparedStatement ps = conn.prepareStatement(sql);
+                        ps.setString(1, hapus);
+                        ps.executeUpdate();
+                        System.out.println("Layanan Berhasil Dihapus");
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
                     break;
 
                 case 3:
-                    layan.infoDB();
+                    Layanan.infoDB();
                     // try {
-                    //     Connection conn = Koneksi.getConnection();
+                    // Connection conn = Koneksi.getConnection();
 
-                    //     String sql = "SELECT * FROM layanan";
-                    //     PreparedStatement ps = conn.prepareStatement(sql);
-                    //     ResultSet rs = ps.executeQuery();
+                    // String sql = "SELECT * FROM layanan";
+                    // PreparedStatement ps = conn.prepareStatement(sql);
+                    // ResultSet rs = ps.executeQuery();
 
-                    //     System.out.println("=== DAFTAR LAYANAN ===");
-                    //     while (rs.next()) {
-                    //         System.out.println(
-                    //             rs.getInt("id_layanan") + " | " + rs.getString("nama_layanan") + " | " + rs.getInt("harga_per_lembar") + " | " + rs.getString("tipe_layanan")
-                    //         );
-                    //     }
+                    // System.out.println("=== DAFTAR LAYANAN ===");
+                    // while (rs.next()) {
+                    // System.out.println(
+                    // rs.getInt("id_layanan") + " | " + rs.getString("nama_layanan") + " | " +
+                    // rs.getInt("harga_per_lembar") + " | " + rs.getString("tipe_layanan")
+                    // );
+                    // }
                     // } catch (Exception e) {
-                    //     e.printStackTrace();
+                    // e.printStackTrace();
                     // }
                 case 0:
                     System.out.println("Keluar dari menu layanan");
@@ -145,17 +146,17 @@ public class Admin extends User {
                     System.out.print("Masukkan Password: ");
                     String pass = s.next();
 
-                     try {
-                        Connection conn = Koneksi.getConnection();   
+                    try {
+                        Connection conn = Koneksi.getConnection();
                         String sql = "INSERT INTO user (username, password, role) VALUES (?, ?, 'operator')";
                         PreparedStatement ps = conn.prepareStatement(sql);
                         ps.setString(1, username);
                         ps.setString(2, pass);
                         ps.executeUpdate();
                         System.out.println("Operator berhasil ditambahkan!");
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                     break;
 
                 case 2:
@@ -163,12 +164,12 @@ public class Admin extends User {
                     String hapus = s.next();
 
                     try {
-                    Connection conn = Koneksi.getConnection();
-                    String sql = "DELETE FROM user WHERE username =?";  
-                    PreparedStatement ps = conn.prepareStatement(sql);
-                    ps.setString(1, hapus); 
-                    ps.executeUpdate();
-                    System.out.println("Operator Berhasil Dihapus");
+                        Connection conn = Koneksi.getConnection();
+                        String sql = "DELETE FROM user WHERE username =?";
+                        PreparedStatement ps = conn.prepareStatement(sql);
+                        ps.setString(1, hapus);
+                        ps.executeUpdate();
+                        System.out.println("Operator Berhasil Dihapus");
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
@@ -185,8 +186,8 @@ public class Admin extends User {
                         System.out.println("=== DAFTAR OPERATOR ===");
                         while (rs.next()) {
                             System.out.println(
-                                rs.getInt("id_user") + " | " + rs.getString("username") + " | " + rs.getString("role")
-                            );
+                                    rs.getInt("id_user") + " | " + rs.getString("username") + " | "
+                                            + rs.getString("role"));
                         }
                     } catch (Exception e) {
                         e.printStackTrace();
@@ -202,37 +203,35 @@ public class Admin extends User {
     }
 
     public void lihatTotalPendapatan() {
-        tran.totalHarga(pilih);//harusnya gapake param
-        // try {
-        //     Connection conn = Koneksi.getConnection();
+        try {
+            Connection conn = Koneksi.getConnection();
+            String sql = "SELECT SUM(total_harga) AS total FROM transaksi";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
 
-        //     String sql = "SELECT SUM(total_harga) AS total FROM transaksi";
-        //     PreparedStatement ps = conn.prepareStatement(sql);
-        //     ResultSet rs = ps.executeQuery();
-
-        //     if (rs.next()) {
-        //         int total = rs.getInt("total");
-        //         System.out.println("\nTotal Pendapatan: Rp." + total);
-        //     }
-        // } catch (Exception e) {
-        //     e.printStackTrace();
-        // }
+            if (rs.next()) {
+                System.out.println("Total Pendapatan: Rp " + rs.getBigDecimal("total"));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public void lihatRiwayatTransaksi() {
-        tran.infoDB();//lom ke tampil di terminal
+        Transaksi.infoDB();// lom ke tampil di terminal
         // System.out.println("Menampilkan riwayat transaksi");
         // try {
-        //     Connection conn = Koneksi.getConnection();
-        //     String sql = "SELECT tgl_transaksi,nama_pelanggan,tipe_layanan,total_harga FROM transaksi";
-        //     PreparedStatement ps = conn.prepareStatement(sql);
-        //     ResultSet rs = ps.executeQuery();
+        // Connection conn = Koneksi.getConnection();
+        // String sql = "SELECT tgl_transaksi,nama_pelanggan,tipe_layanan,total_harga
+        // FROM transaksi";
+        // PreparedStatement ps = conn.prepareStatement(sql);
+        // ResultSet rs = ps.executeQuery();
 
-        //     if (rs.next()) {
-               
-        //     }
+        // if (rs.next()) {
+
+        // }
         // } catch (Exception e) {
-        //     e.printStackTrace();
+        // e.printStackTrace();
         // }
     }
 }
