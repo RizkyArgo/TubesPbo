@@ -54,7 +54,7 @@ public class Main {
                         admin.lihatTotalPendapatan();
                         break;
                     case 4:
-                        admin.cetakTransaksi();
+                        Transaksi.infoDB();
                         break;
                     case 0:
                         jalan = false;

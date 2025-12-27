@@ -42,12 +42,6 @@ public class Layanan {
         return tipe;
     }
 
-    public void info() {
-        System.out.println("Nama Layanan : " + namaLayanan);
-        System.out.println("Harga/Halaman: " + hargaPerHalaman);
-        System.out.println("Tipe         : " + tipe);
-    }
-
     // ===== DATABASE =====
     public static void infoDB() {
         try {

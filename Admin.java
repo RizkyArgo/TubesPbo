@@ -14,7 +14,6 @@ public class Admin extends User {
     Scanner s = new Scanner(System.in);
     int pilih;
     Layanan layan;
-    Transaksi tran;
 
     public Admin(int idUser, String username, String password) {
         super(idUser, username, password, "Admin");
@@ -100,23 +99,6 @@ public class Admin extends User {
 
                 case 3:
                     Layanan.infoDB();
-                    // try {
-                    // Connection conn = Koneksi.getConnection();
-
-                    // String sql = "SELECT * FROM layanan";
-                    // PreparedStatement ps = conn.prepareStatement(sql);
-                    // ResultSet rs = ps.executeQuery();
-
-                    // System.out.println("=== DAFTAR LAYANAN ===");
-                    // while (rs.next()) {
-                    // System.out.println(
-                    // rs.getInt("id_layanan") + " | " + rs.getString("nama_layanan") + " | " +
-                    // rs.getInt("harga_per_lembar") + " | " + rs.getString("tipe_layanan")
-                    // );
-                    // }
-                    // } catch (Exception e) {
-                    // e.printStackTrace();
-                    // }
                 case 0:
                     System.out.println("Keluar dari menu layanan");
                     break;
@@ -203,35 +185,12 @@ public class Admin extends User {
     }
 
     public void lihatTotalPendapatan() {
-        try {
-            Connection conn = Koneksi.getConnection();
-            String sql = "SELECT SUM(total_harga) AS total FROM transaksi";
-            PreparedStatement ps = conn.prepareStatement(sql);
-            ResultSet rs = ps.executeQuery();
-
-            if (rs.next()) {
-                System.out.println("Total Pendapatan: Rp " + rs.getBigDecimal("total"));
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        System.out.println();
+        System.out.println("Total Pendapatan: Rp " + Transaksi.totalPendapatan());
     }
 
     public void lihatRiwayatTransaksi() {
-        Transaksi.infoDB();// lom ke tampil di terminal
-        // System.out.println("Menampilkan riwayat transaksi");
-        // try {
-        // Connection conn = Koneksi.getConnection();
-        // String sql = "SELECT tgl_transaksi,nama_pelanggan,tipe_layanan,total_harga
-        // FROM transaksi";
-        // PreparedStatement ps = conn.prepareStatement(sql);
-        // ResultSet rs = ps.executeQuery();
-
-        // if (rs.next()) {
-
-        // }
-        // } catch (Exception e) {
-        // e.printStackTrace();
-        // }
+        Transaksi.infoDB();
+        
     }
 }
